@@ -8,10 +8,13 @@ print(f"Socket binded to port:{port}")
 
 s.listen(3)
 print("Server is listening")
-p = "Thankyou for connecting"
+# p = "Thankyou for connecting"
 while True:
     c, addr = s.accept()
     print(f"Got connection from {addr} and {c}")
-    r = p.encode()
+    r = input("Enter message to be sent to client")
+    r = r.encode()
     c.send(r)
+    data = c.recvfrom(1024)
+    print(data)
     c.close()
